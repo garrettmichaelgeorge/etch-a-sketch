@@ -1,0 +1,10 @@
+{
+  "name": "etch-a-sketch",
+  "version": "1.0.0",
+  "description": "Play the classic Etch-A-Sketch in the browser",
+  "main": "index.js",
+  "repository": "https://github.com/garrettmichaelgeorge/etch-a-sketch",
+  "author": "garrettmichaelgeorge <garrett.michael.george@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
