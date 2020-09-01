@@ -1,54 +1,78 @@
+"use strict";
+
 // Setup
-const btnClear = document.querySelector('#btn-clear')
-const container = document.querySelector('.container');
 const GRIDWIDTHPX = 960;
+const form = () => document.forms.settings;
 
-drawSquares(128);
+drawGrid(form().gridSizeInput.value);
+setUpClearButton();
+setUpGridSizeFormInput();
 
-function drawSquares(number) {
-  setContainerGrid(number);
+// FUNCTIONS
+function drawGrid(number) {
+  removeSquares();
+  drawSquares(number);
+  setContainerStyles(number);
 
-  for (let i = 0; i < number**2; i++) {
-    const square = document.createElement('div');
-    square.classList.add('square');
-    container.append(square);
+  function drawSquares(number) {
+    console.log('Drawing squares...');
+    for (let i = 0; i < number**2; i++) {
+      const square = document.createElement('div');
+      square.classList.add('square');
+      setHoverEffectFor(square);
+      document.querySelector('.container').append(square);
+    }
+
+    function setHoverEffectFor(square) {
+      square.addEventListener('mouseover', (e) => {
+        square.classList.add('hover');
+      });
+    }
   }
 
-  function setContainerGrid(number) {
-    // 960px = (14 + 1) * 64;
-    const squareSizePx = (GRIDWIDTHPX / number) - 1;
-    const gridGapPx = 1;
-    const gridTemplate = `repeat(${number}, ${squareSizePx}px)`;
+  function removeSquares() {
+    removeChildElementsOf(document.querySelector('.container'));
+  }
 
-    // container.style[width] = GRIDWIDTHPX;
-    container.style.gridTemplateRows = gridTemplate;
-    container.style.gridTemplateColumns = gridTemplate;
-    container.style.gridRowGap = gridGapPx;
-    container.style.gridColumnGap = gridGapPx;
+  function setContainerStyles(number) {
+    const container = document.querySelector('.container');
+    container.style.gridTemplateRows = `repeat(${number}, 1fr)`;
+    container.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
+  }
+
+}
+
+function setUpClearButton() {
+  document.querySelector('#btn-clear').addEventListener('click', () => {
+    removeClassFromSquares('hover');
+  });
+}
+
+function setUpGridSizeFormInput() {
+  form().gridSizeInput.oninput = (event) => {
+    drawGrid(event.target.value);
   }
 }
 
-const squares = document.querySelectorAll('.square');
-
-// Hover effect
-squares.forEach((square) => {
-  square.addEventListener('mouseover', (e) => {
-    square.classList.add('hover');
-  })
-});
-
-// Clear button
-btnClear.addEventListener('click', () => removeClassFromSquares('hover'));
-
-// Helper functions
+// HELPER FUNCTIONS
 function addClassToSquares(className) {
-  squares.forEach((square) => {
+  squares().forEach((square) => {
     square.classList.add(className)
   });
 }
 
 function removeClassFromSquares(className) {
-  squares.forEach((square) => {
+  squares().forEach((square) => {
     square.classList.remove(className)
   });
+}
+
+function squares() {
+  return document.querySelectorAll('.square');
+}
+
+function removeChildElementsOf(parentElement) {
+  while (parentElement.lastElementChild) {
+    parentElement.removeChild(parentElement.lastElementChild);
+  }
 }

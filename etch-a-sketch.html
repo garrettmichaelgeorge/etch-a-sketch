@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Etch-A-Sketch</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <title>Etch-A-Sketch</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
 
-  <meta name="theme-color" content="#fafafa">
-  <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-  <main class="main">
-    <header class="header">
-      <button id="btn-clear" class="btn">Clear</button>
-    </header>
-    <div class="container">
-    </div>
-  </main>
+    <meta name="theme-color" content="#fafafa">
+    <link rel="stylesheet" href="css/modern-css-reset.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jfm1inl.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <main class="main">
+      <header class="header">
+        <h1 class="h1">Etch-A-Sketch!</h1>
+        <p class=""><span class="smcp directions">DIRECTIONS: </span>Move your cursor
+        over the Etch-A-Sketch to draw.</p> 
+        <form name="settings">
+          <label for="gridSizeInput">No. of squares</label>
+          <input name="gridSizeInput" id="" value="16">
+          <div>
+            <button id="btn-clear" class="btn">Reset</button>
+          </div>
+        </form>
+      </header>
 
-  <script src="js/main.js"></script>
-</body>
+      <div class="container">
+      </div>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>
